@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Главная</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">AvitoMin</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Главная</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/user?id={{request.user.id}}">Профиль</a>
+      </li>
+      
+      <li class="nav-item">
+          <a class="nav-link" href="/plus_ad">Добавить обьявление</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Выйти</a>
+      </li>
+
+    </ul>
+    <form onsubmit="return false" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" id="search_inp" placeholder="Поеск" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" id="search" type="submit">Поескать</button>
+    </form>
+  </div>
+</nav>
+
+
+<div class="container-fluid">
+      <center><h1 class="mt-4 ">Все обьявления</h1></center>
+
+      <div class="row mt-4">
+
+        {% for ad in ads %}
+          <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+            <div class="card pt-2" style="width: 18rem; height:28rem;">
+                                      <div style="width:100%;height:250px;background: url({{ad.image.url}}) center no-repeat;background-size: contain;">
+                                      </div>
+                                      <div class="card-body pb-4">
+                                          <h3 class="card-title">{{ad.name}}</h3>
+                                          <p><b>{{ad.price}}</b> рублев</p>
+                                          <p class="card-text">{{ad.description}}</p>
+                                          <h4>Продавец:<a href="/user?id={{ad.owner_id}}">{{ad.owner}}</a></h4>
+                                        </div>
+                              </div>
+          </div>
+          {% endfor %}
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+        document.getElementById('search').addEventListener('click',function(){
+          const input_val = document.getElementById('search_inp').value
+          location.href = location.origin + `/search_ads?query=${input_val}`
+        
+        })
+    </script>
+
+  </body>
+  </html>

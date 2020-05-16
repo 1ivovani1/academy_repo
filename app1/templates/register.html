@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/login.css">
+</head>
+<body>
+    
+    {% for message in messages %}
+    <div class="alert alert-danger" role="alert">
+        <strong>Ошибка!</strong>  {{message}}
+    </div>
+    {% endfor %}
+
+    <form class="border border-warning" enctype="multipart/form-data" style="border-radius:15px;padding:20px;" method="POST">
+         {% csrf_token %}
+         <center><img src="https://static.tildacdn.com/tild6536-6139-4562-a430-346635653332/Group.png" alt=""></center>
+         <center><h2>Форма регистрации</h2></center>
+         <div class="form-group">
+            <input type="text" name="login" class="form-control" placeholder="Логин" id="login" required>
+        </div>
+        <div class="form-group">
+                
+                <input type="text" name='first_name' class="form-control" placeholder="Имя" required>
+        </div>
+        <div class="form-group">
+                <input type="text" name='last_name' class="form-control" placeholder="Фамилия" required>
+        </div>
+        <div class="form-group">
+                <input type="password" name='password' class="form-control" placeholder="Пароль" id="password" required>
+        </div>
+        <div class="form-group">
+                <input type="email" name='email' class="form-control" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+                <input type="phone" name='user_phone' class="form-control" placeholder="+79999999999" required>
+        </div>
+        <div class="form-group">
+            <input type="file" name="avatar" placeholder="Загрузите аватар">
+        </div>
+        <div class="row">
+            <div class="col-12 mb-2">
+                <button type="submit" class="btn btn-primary btn-block">Регистрация</button>
+            </div>
+            <div class="col-12">
+                <a href="/login" class="btn btn-success btn-block">Вход</a>
+            </div>
+        </div>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
