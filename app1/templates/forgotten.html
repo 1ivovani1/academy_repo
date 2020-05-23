@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Восстановление пароля</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        body{
+            height:100vh;
+            width: 100vw;
+            background: linear-gradient(#FDC830,#F37335);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        form img{
+            display: block;
+            height:80px;
+            width:80px;
+            padding: 5px;
+            border-radius:5px;
+            background: whitesmoke;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        form{
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        #back{
+            position: absolute;
+            display: block;
+            left:10px;
+            top:20px;
+            box-shadow: none;
+            height:40px;
+            background: whitesmoke;
+        }
+
+    </style>
+</head>
+<body>
+        {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            <strong>Ошибка!</strong>  {{message}}
+        </div>
+        {% endfor %}
+
+
+        <form class=" bg-light" style="border-radius:15px;padding:20px;" method="POST">
+            <a href="/login"><img src="https://image.flaticon.com/icons/svg/2223/2223615.svg" id="back"></a>
+            {% csrf_token %}
+                <center><img src="https://static.tildacdn.com/tild6536-6139-4562-a430-346635653332/Group.png"  alt=""></center>
+                <center><h2 class="text-dark mt-2">Восстанови пороль</h2></center>
+                <div class="form-group">
+                        <input type="email" name='email' class="form-control" placeholder="Email" >
+                </div>
+                <center><button type="submit" class="btn btn-outline-info">Подтвердить</button></center>
+        
+        </form>
+    
+</body>
+</html>

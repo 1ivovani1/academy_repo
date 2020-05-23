@@ -12,5 +12,6 @@ urlpatterns = [
     path('logout',logout_page),
     path('user',user_page),
     path('plus_ad',add_ad),
-    path('search_ads',search_ads)
+    path('search_ads',search_ads),
+    path('reset',forgotten_password)
 ] + static('media/', document_root = 'media/')

@@ -11,7 +11,20 @@
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8" id="info_block">
                 <h1><b>{{user.last_name}} {{user.first_name}}</b></h1>
-                <h3 style="font-style: italic;" class="text-primary">Оцен о4ка: <span class="text-danger">10/5</span></h3>
+                <form method='POST' id="rate">
+                <div class="row" style="width:40%" id="rate_wrapper">
+                    <div class="col-2"><img src="../static/disabled_star.svg" alt="" style="height:40px;width:40px"></div>
+                    <div class="col-2"><img src="../static/disabled_star.svg" alt="" style="height:40px;width:40px"></div>
+                    <div class="col-2"><img src="../static/disabled_star.svg" alt="" style="height:40px;width:40px"></div>
+                    <div class="col-2"><img src="../static/disabled_star.svg" alt="" style="height:40px;width:40px"></div>
+                    <div class="col-2"><img src="../static/disabled_star.svg" alt="" style="height:40px;width:40px"></div>
+                    <div class="col-2"><img src="../static/disabled_star.svg" alt="" style="height:40px;width:40px"></div>    
+                </div>
+                {%csrf_token%}
+                <input type="hidden" name='rate' value="0">
+                <input type="hidden" name="user_id" value="{{user_id}}">
+                </form>
+                <h3 class="mt-4"><span class="text-danger">Оцен о4ка:</span>{{rate}}</h3>
                 <small class="text-muted">@{{user.username}}</small> <br>
                 <a href="tel:{{user.phone}}" id="tel" class="btn btn-lg btn-success mt-2">Позвонить</a>
                 <a href="mailto:{{user.email}}" id="em" class="btn btn-lg btn-primary mt-2">{{user.email}}</a>
@@ -72,5 +85,27 @@
         info_block.style.textAlign = 'center';
 
     }
+
+    const rate_inp = document.querySelector('input[name="rate"]'),
+          rate_form = document.getElementById('rate')
+
+    document.querySelectorAll('#rate_wrapper img').forEach((item,index)=>{
+        item.addEventListener('click',()=>{
+            let our_ind = index
+            null_foo()
+            rate_inp.value = our_ind + 1
+            for(let i = 0;i <= index;i++){
+                document.querySelectorAll('#rate_wrapper img')[i].src = '../static/active_star.svg'
+            }
+            rate_form.submit()
+        })
+    })
+
+    const null_foo = () => {
+        document.querySelectorAll('#rate_wrapper img').forEach(item => {
+            item.src = '../static/disabled_star.svg'
+        })
+    }
+
 </script>
 {% endblock %}

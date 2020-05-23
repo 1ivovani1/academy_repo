@@ -15,3 +15,10 @@ class Ad(models.Model):
 
     def __str__(self):
         return self.name
+
+class FeedBack(models.Model):
+    rate = models.IntegerField(null=False,default=0)
+    whom = models.CharField(null=False,default='',max_length=255)
+
+    def __str__(self):
+        return self.subject
